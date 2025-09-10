@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>STOCKINFO</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Roboto&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="./static/css/style.css" />
+    <script 
+  src="https://www.paypal.com/sdk/js?client-id=BAAKdKocpZfMUHLCsKKyyIT4zkKmtFwu6mRunDoHsCDuvYgIeAex7xpVWYs9_6JWPqT6i-tpo0swSLshMo&components=hosted-buttons&disable-funding=venmo&currency=USD">
+</script>
+</head>
+<body style="background-image: url('https://t4.ftcdn.net/jpg/05/92/39/77/360_F_592397746_9eIcUh7rg1fUw4zoGRiTh0NlY7dnjuvY.jpg'); background-size: cover; background-position: center; background-color: darkgrey" >
+    
+    <header class="d-flex justify-content-between align-items-center px-4 py-2 header-bar">
+        <div class="logo" ><a href="{{url_for('index')}}" style="text-decoration: none; color: white;">STOCKINFO</a></div>
+        <form class="search-form d-flex align-items-center" action="/search" method= 'POST'>
+            <input name="stockcode" type="text" class="form-control me-2" style="text-align: center;" placeholder="Enter STOCK-CODE" aria-label="Search">
+            <button type="submit" class="btn btn-outline-light" aria-label="Submit Search">
+                <i class="bi bi-search"></i>
+            </button>
+        </form>
+        <nav class="nav-links">
+           <a href="https://www.nasdaq.com/market-activity/stocks/screener">Stock-Codes</a>
+            <a href="{{ url_for('api')}}">API</a>
+            <a href="{{ url_for('about')}}">About</a>
+            <a href="{{ url_for('donate')}}">Donate</a>
+        </nav>
+    </header>
+
+    <main class="main-content ">
+       <div id="paypal-container-HRSMKJU2M26SW" style="position: relative; left: 300px; ">
+<script>
+  paypal.HostedButtons({
+    hostedButtonId: "HRSMKJU2M26SW",
+  }).render("#paypal-container-HRSMKJU2M26SW")
+</script>
+       </div>
+    </main>
+    
+<footer class="footer d-flex align-items-center justify-content-between px-4 py-3; " >
+    <div class="d-flex">
+        <a href="https://github.com/amoghsp132"  class="text-white me-3">
+            <i class="bi bi-github icon"></i>
+        </a>
+        <a href="https://www.linkedin.com/in/amogh-patil-533168296/"  class="text-white me-3">
+            <i class="bi bi-linkedin icon"></i>
+        </a>
+        <a href="https://amoghsp132.github.io/My-Portfolio/"  class="text-white">
+            <i class="bi bi-arrow-up-right-square-fill icon"></i>
+        </a>
+    </div>
+    <div class="footer-text text-center mx-auto">
+        <small style="color: rgb(62, 62, 62);">&copy; All Rights Reserved. Developed by Amogh Patil</small>
+    </div>
+</footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

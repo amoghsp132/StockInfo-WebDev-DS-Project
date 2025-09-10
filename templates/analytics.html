@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>STOCKINFO</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Roboto&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="./static/css/style.css" />
+</head>
+<body style="background-color: rgba(31, 31, 31, 1)">
+    
+        <header class="d-flex justify-content-between align-items-center px-4 py-2 header-bar">
+        <div class="logo" ><a href="{{url_for('index')}}" style="text-decoration: none; color: white;">STOCKINFO</a></div>
+        <form class="search-form d-flex align-items-center" action="/search" method= 'POST'>
+            <input name="stockcode" type="text" class="form-control me-2" style="text-align: center;" placeholder="Enter STOCK-CODE" aria-label="Search">
+            <button type="submit" class="btn btn-outline-light" aria-label="Submit Search">
+                <i class="bi bi-search"></i>
+            </button>
+        </form>
+        <nav class="nav-links">
+            <a href="https://www.nasdaq.com/market-activity/stocks/screener">Stock-Codes</a>
+            <a href="{{ url_for('api')}}">API</a>
+            <a href="{{ url_for('about')}}">About</a>
+            <a href="{{ url_for('donate')}}">Donate</a>
+        </nav>
+    </header>
+
+
+    <main class="main-content text-center">
+        
+        <!-- TradingView Widget BEGIN -->
+<div style="height: 450px; width: 1138px">
+<div class="tradingview-widget-container" style="height:600px; width:800px; margin: auto; position: relative;bottom: 80px; right:1px">
+  <div class="tradingview-widget-container__widget" style="height:100%; width:100%;"></div>
+
+  <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js" async>
+  {
+  "allow_symbol_change": true,
+  "calendar": false,
+  "details": true,
+  "hide_side_toolbar": false,
+  "hide_top_toolbar": false,
+  "hide_legend": false,
+  "hide_volume": false,
+  "hotlist": true,
+  "interval": "D",
+  "locale": "en",
+  "save_image": true,
+  "style": "2",
+  "symbol": "{{symbol}}",
+  "theme": "dark",
+  "timezone": "Etc/UTC",
+  "backgroundColor": "#0F0F0F",
+  "gridColor": "rgba(242, 242, 242, 0.06)",
+  "watchlist": [],
+  "withdateranges": true,
+  "compareSymbols": [],
+  "show_popup_button": true,
+  "popup_height": "650",
+  "popup_width": "1000",
+  "studies": [],
+  "autosize": true
+}
+  </script>
+</div>
+</div>
+<!-- TradingView Widget END -->
+
+<div style="height: 636px; width: 400px; margin: auto; position:absolute; bottom: 40px; left: 1136px">
+    <!-- TradingView Widget BEGIN -->
+<div class="tradingview-widget-container">
+  <div class="tradingview-widget-container__widget"></div>
+  <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-market-overview.js" async>
+  {
+  "colorTheme": "dark",
+  "dateRange": "12M",
+  "locale": "en",
+  "largeChartUrl": "",
+  "isTransparent": false,
+  "showFloatingTooltip": false,
+  "plotLineColorGrowing": "rgba(41, 98, 255, 1)",
+  "plotLineColorFalling": "rgba(41, 98, 255, 1)",
+  "gridLineColor": "rgba(240, 243, 250, 0)",
+  "scaleFontColor": "#DBDBDB",
+  "belowLineFillColorGrowing": "rgba(41, 98, 255, 0.12)",
+  "belowLineFillColorFalling": "rgba(41, 98, 255, 0.12)",
+  "belowLineFillColorGrowingBottom": "rgba(41, 98, 255, 0)",
+  "belowLineFillColorFallingBottom": "rgba(41, 98, 255, 0)",
+  "symbolActiveColor": "rgba(41, 98, 255, 0.12)",
+  "tabs": [
+    {
+      "title": "Indices",
+      "symbols": [
+        {
+          "s": "FOREXCOM:SPXUSD",
+          "d": "S&P 500 Index"
+        },
+        {
+          "s": "FOREXCOM:NSXUSD",
+          "d": "US 100 Cash CFD"
+        },
+        {
+          "s": "INDEX:NKY",
+          "d": "Japan 225"
+        },
+        {
+          "s": "FX_IDC:INRUSD",
+          "d": "INR vs USD",
+          "base-currency-logoid": "country/IN",
+          "currency-logoid": "country/US"
+        },
+        {
+          "s": "NSE:CNX500",
+          "d": "NIFTY 500",
+          "logoid": "indices/nifty-500",
+          "currency-logoid": "country/IN"
+        },
+        {
+          "s": "NSE:BANKNIFTY",
+          "d": "BANK NIFTY",
+          "logoid": "sector/financial",
+          "currency-logoid": "country/IN"
+        },
+        {
+          "s": "INDEX:BTCUSD",
+          "d": "BTC vs USD",
+          "base-currency-logoid": "crypto/XTVCBTC",
+          "currency-logoid": "country/US"
+        },
+        {
+          "s": "NASDAQ:AMD",
+          "d": "AMD",
+          "logoid": "advanced-micro-devices",
+          "currency-logoid": "country/US"
+        },
+        {
+          "s": "NASDAQ:NVDA",
+          "d": "NVIDIA",
+          "logoid": "nvidia",
+          "currency-logoid": "country/US"
+        }
+      ],
+      "originalTitle": "Indices"
+    },
+    {
+      "title": "Futures",
+      "symbols": [
+        {
+          "s": "BMFBOVESPA:ISP1!",
+          "d": "S&P 500"
+        },
+        {
+          "s": "BMFBOVESPA:EUR1!",
+          "d": "Euro"
+        },
+        {
+          "s": "CMCMARKETS:GOLD",
+          "d": "Gold"
+        },
+        {
+          "s": "PYTH:WTI3!",
+          "d": "WTI Crude Oil"
+        },
+        {
+          "s": "BMFBOVESPA:CCM1!",
+          "d": "Corn"
+        }
+      ],
+      "originalTitle": "Futures"
+    },
+    {
+      "title": "Bonds",
+      "symbols": [
+        {
+          "s": "EUREX:FGBL1!",
+          "d": "Euro Bund"
+        },
+        {
+          "s": "EUREX:FBTP1!",
+          "d": "Euro BTP"
+        },
+        {
+          "s": "EUREX:FGBM1!",
+          "d": "Euro BOBL"
+        }
+      ],
+      "originalTitle": "Bonds"
+    },
+    {
+      "title": "Forex",
+      "symbols": [
+        {
+          "s": "FX:EURUSD",
+          "d": "EUR to USD"
+        },
+        {
+          "s": "FX:GBPUSD",
+          "d": "GBP to USD"
+        },
+        {
+          "s": "FX:USDJPY",
+          "d": "USD to JPY"
+        },
+        {
+          "s": "FX:USDCHF",
+          "d": "USD to CHF"
+        },
+        {
+          "s": "FX:AUDUSD",
+          "d": "AUD to USD"
+        },
+        {
+          "s": "FX:USDCAD",
+          "d": "USD to CAD"
+        }
+      ],
+      "originalTitle": "Forex"
+    }
+  ],
+  "support_host": "https://www.tradingview.com",
+  "backgroundColor": "#0f0f0f",
+  "width": "100%",
+  "height": "100%",
+  "showSymbolLogo": true,
+  "showChart": true
+}
+  </script>
+</div>
+<!-- TradingView Widget END -->
+</div>
+
+
+<div style="height: 186px; width: 890px ; margin: auto; position:absolute; bottom: 40px">
+<!-- TradingView Widget BEGIN -->
+<div class="tradingview-widget-container">
+  <div class="tradingview-widget-container__widget"></div>
+ 
+  <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-timeline.js" async>
+  {
+  "displayMode": "adaptive",
+  "feedMode": "symbol",
+  "symbol": "{{symbol}}",
+  "colorTheme": "dark",
+  "isTransparent": false,
+  "locale": "en",
+  "width": "100%",
+  "height": "100%"
+}
+  </script>
+</div>
+<!-- TradingView Widget END -->
+</div>
+
+<div class="btn-group-vertical " role="group" aria-label="Vertical button group" style="position: absolute; height: 186px; width: 244px; bottom: 40px; left: 890px ">
+  <button type="button" class="btn btn-primary"><a href="{{ url_for('report') }}?ticker={{ stockcode }}" style="text-decoration: none; color: white;">View EDA Report</a></button>
+  <button type="button" class="btn btn-primary"> <a href="{{ url_for('download_csv') }}?ticker={{ stockcode }}" style="text-decoration: none; color: white;">Download CSV</a></button>
+  <button type="button" class="btn btn-primary"><a href="{{ url_for('download_pdf') }}?ticker={{ stockcode }}" style="text-decoration: none; color: white;">Download PDF</a></button>
+</div>
+
+</main>
+
+
+<footer class="footer d-flex align-items-center justify-content-between px-4 py-3; " >
+    <div class="d-flex">
+        <a href="https://github.com/amoghsp132"  class="text-white me-3">
+            <i class="bi bi-github icon"></i>
+        </a>
+        <a href="https://www.linkedin.com/in/amogh-patil-533168296/"  class="text-white me-3">
+            <i class="bi bi-linkedin icon"></i>
+        </a>
+        <a href="https://amoghsp132.github.io/My-Portfolio/"  class="text-white">
+            <i class="bi bi-arrow-up-right-square-fill icon"></i>
+        </a>
+    </div>
+    <div class="footer-text text-center mx-auto">
+        <small style="color: rgb(62, 62, 62);">&copy; All Rights Reserved. Developed by Amogh Patil</small>
+    </div>
+</footer>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js">
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>STOCKINFO : API Usage</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./static/css/style.css" />
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #3EE8C4;
+            color: white;
+            display: flex;
+            flex-direction: column;
+        }
+        header, footer {
+            position: fixed;
+            left: 0;
+            right: 0;
+            background-color: #222;
+            z-index: 1000;
+        }
+        header {
+            top: 0;
+        }
+        footer {
+            bottom: 0;
+        }
+        .main-content {
+            flex: 1;
+            margin-top: 70px;   /* Adjust depending on header height */
+            margin-bottom: 70px; /* Adjust depending on footer height */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow-y: auto;
+        }
+        .usage-container {
+            max-width: 600px;
+            width: 90%;
+        }
+        .usage {
+            background: #525252ff;
+            margin: 10px 0;
+            padding: 20px;
+            border-radius: 10px;
+        }
+        .method {
+            color: #fbff00ff;
+            font-weight: bold;
+        }
+        code {
+            background: #feffbbff;
+            color: #204b38;
+            padding: 2px 5px;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <header class="d-flex justify-content-between align-items-center px-4 py-2 header-bar">
+        <div class="logo"><a href="{{ url_for('index') }}" style="text-decoration: none; color: white;">STOCKINFO</a></div>
+        <form class="search-form d-flex align-items-center" action="/search" method="POST">
+            <input name="stockcode" type="text" class="form-control me-2" style="text-align: center;" placeholder="Enter STOCK-CODE" aria-label="Search">
+            <button type="submit" class="btn btn-outline-light" aria-label="Submit Search">
+                <i class="bi bi-search"></i>
+            </button>
+        </form>
+        <nav class="nav-links">
+           <a href="https://www.nasdaq.com/market-activity/stocks/screener">Stock-Codes</a>
+            <a href="{{ url_for('api')}}">API</a>
+            <a href="{{ url_for('about')}}">About</a>
+            <a href="{{ url_for('donate')}}">Donate</a>
+        </nav>
+    </header>
+
+    <main class="main-content">
+        <div class="usage-container" style="position: relative; bottom: 30px;">
+            <div class="usage">
+                <div class="method">GET /download_csv</div>
+                Download stock price data as CSV.<br>
+                Example: <code>/download_csv?ticker=AAPL</code>
+            </div>
+            <div class="usage">
+                <div class="method">GET /download_pdf</div>
+                Download a PDF report summarizing stock info.<br>
+                Example: <code>/download_pdf?ticker=TSLA</code>
+            </div>
+            <div class="usage">
+                <div class="method">GET /report</div>
+                View detailed HTML analysis of stock data.<br>
+                Example: <code>/report?ticker=GOOGL</code>
+            </div>
+            <div class="usage">
+                <div class="method">GET /raw</div>
+                Access raw stock data in JSON format.<br>
+                Example: <code>/raw?ticker=MSFT</code>
+            </div>
+        </div>
+    </main>
+
+<footer class="footer d-flex align-items-center justify-content-between px-4 py-3; " >
+    <div class="d-flex">
+        <a href="https://github.com/amoghsp132"  class="text-white me-3">
+            <i class="bi bi-github icon"></i>
+        </a>
+        <a href="https://www.linkedin.com/in/amogh-patil-533168296/"  class="text-white me-3">
+            <i class="bi bi-linkedin icon"></i>
+        </a>
+        <a href="https://amoghsp132.github.io/My-Portfolio/"  class="text-white">
+            <i class="bi bi-arrow-up-right-square-fill icon"></i>
+        </a>
+    </div>
+    <div class="footer-text text-center mx-auto">
+        <small style="color: rgb(62, 62, 62);">&copy; All Rights Reserved. Developed by Amogh Patil</small>
+    </div>
+</footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

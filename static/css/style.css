@@ -1,0 +1,116 @@
+/* Fonts */
+@font-face {
+    font-family: 'Valorax';
+    src: url('fonts/Valorax-Regular.ttf') format('truetype');
+}
+
+/* ADDED: Sticky Footer Implementation */
+html, body {
+    height: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #3EE8C4; /* CHANGED: from 'auto' to 'cover' for better scaling */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    
+    /* ADDED: Flexbox properties for sticky footer */
+    display: flex;
+    flex-direction: column;
+}
+
+
+
+.header-bar {
+    background-color: rgba(0, 0, 0, 1);
+    color: white; /* Added for better text visibility */
+}
+
+.logo {
+    font-family: 'Valorax', sans-serif;
+    font-size: 1.5rem;
+}
+
+.search-form input {
+    width: 400px;
+    border-radius: 90px;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    margin-left: 1rem;
+    font-size: 1rem;
+}
+
+.nav-links a:hover {
+    text-decoration: underline;
+}
+
+.main-content {
+    padding-top: 5rem;
+    color: white; /* Added for better text visibility */
+    
+    /* ADDED: This makes the main content expand to push the footer down */
+    flex: 1; 
+}
+
+.dashboard-img {
+    width: 60%;
+    max-width: 700px;
+    border: 1px solid #ccc; /* Added a light border for visibility */
+}
+
+.tagline-img {
+    max-width: 400px;
+}
+
+.tagline {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 1.2rem;
+    margin-top: 2rem;
+    text-align: center;
+    top: 50% ;
+    color: rgb(255, 255, 255); /* Added for better text visibility */;
+    
+}
+
+.footer {
+    background-color: rgba(0, 0, 0, 0.2);
+    color: white;
+    height: 40px; /* slightly larger for spacing */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.footer-text {
+    text-align: center;
+    position: relative;
+    bottom: 1px;
+}
+
+.icon {
+    width: 30px;
+    margin: 0 10px;
+    transition: transform 0.3s ease, color 0.3s ease;
+    cursor: pointer;
+}
+
+.icon:hover {
+    transform: scale(1.3);
+    color: #FFD700;
+}
+
+.footer .text-white {
+    transition: color 0.3s ease;
+}
+
+.footer .text-white:hover {
+    color: #FFD700;
+}
